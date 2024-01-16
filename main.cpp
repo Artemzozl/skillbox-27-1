@@ -1,11 +1,23 @@
 #include <iostream>
 #include <string>
+#include <math.h>
 
-class geometricFigure{
-
+enum class FigureColor{
+    NONE,
+   ORANGE,
+   BLUE,
+   GREEN,
+   YELLOW
 };
-void descriptionRectangle(int wight = 8, int height = 8){
+/*class geometricFigure{
 
+
+};*/
+
+void descriptionRectangle(double area){
+    int wight = 0, height = 0;
+    wight = std::sqrt(area);
+    height = area/wight;
     for(int i =0; i < height; ++i){
         for(int j=0; j < wight; ++j){
             if ((i== height/2) && (j==wight/2)){
@@ -18,25 +30,28 @@ void descriptionRectangle(int wight = 8, int height = 8){
         }
         std::cout << std::endl;
     }
+    std::cout << "Height: " << height << "  " << "Wight: " << wight << std::endl;
+    int areaRectangle = height * wight;
+    std::cout  << "Area rectangle: " << areaRectangle << std::endl;
 }
 
 int main() {
     std::string command = "unknown";
-    int widthValue = 0, heightValue = 0;
+    double circleRadius;
+
 
     while (command != "end"){
         std::cout << "Select one geometric shape 'circle', 'square', 'triangle', 'rectangle' or enter 'end' to end the program:" << std::endl;
         std::cin >> command;
-        std::cout << "Enter the coordinates of the circumscribing rectangle: ";
-        std::cin >> widthValue;
-        std::cout << " ";
-        std::cin >> heightValue;
         if (command == "circle"){
-            std::cout << "circle" << std::endl;
-            descriptionRectangle(widthValue, heightValue);
+            std::cout << "Enter the circle radius value: ";
+            std::cin >> circleRadius;
+            int areaCircle = std::atan(circleRadius) * 4 * circleRadius;
+            std::cout << "Area circle: " << areaCircle << std::endl;
+            descriptionRectangle(areaCircle);
         } else if (command == "triangle"){
             std::cout << "triangle" << std::endl;
-            descriptionRectangle(widthValue, heightValue);
+
         }
     }
     return 0;
